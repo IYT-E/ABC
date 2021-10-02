@@ -35,7 +35,7 @@
 #     else:
 #         print('No')
 
-#C
+#C うんこプログラム
 import itertools
 import copy
 
