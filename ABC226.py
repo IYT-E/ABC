@@ -1,8 +1,10 @@
-# from decimal import *
-# v = float(input())
-# c = Decimal(str(v)).quantize( Decimal('0') , rounding=ROUND_HALF_UP )
-# print(c)
+# Aでこんなのやらすな！
+from decimal import *
+v = float(input())
+c = Decimal(str(v)).quantize( Decimal('0') , rounding=ROUND_HALF_UP )
+print(c)
 
+#BでCみたいな計算量削減の問題出すな！！！
 n=int(input())
 li = []
 xli=[]
@@ -18,3 +20,4 @@ for i in range(n):
         li.append(l)
         cnt+=1
 print(cnt)
+
