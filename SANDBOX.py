@@ -1,2 +1,2 @@
-a=[0 for _ in range(10)]
-print(a)
+for i in range(1,3):
+    print(i)
