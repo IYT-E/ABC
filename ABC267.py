@@ -57,28 +57,34 @@
 # else:print('No')
 
 #C
-n,m=map(int, input().split())
-l=list(map(int, input().split()))
+n,m=[int(i) for i in input().split()]
+a=[int(i) for i in input().split()]
+#print(n,m,a)
 
-indexsum=sum(l[0:m])
-tmp=0
+#初期値はマイナスの最小値
+ans=-10**16
+
+#累積和 nのリスト全部分
+rw=[0]
+for i in range(n):
+  rw.append(rw[i]+a[i])
+# print(rw)
+
+#左端のmをまず求めてnowに格納する 
+now=0
 for i in range(m):
-    tmp+=(i+1)*l[i]
-    print(tmp)
+  now+=(i+1)*a[i]
+# print(now)
 
-if n==m:
-    print(tmp)
-    exit()
+#左端ぶんのans判定
+ans=max(ans,now)
 
-max=tmp
-
-for j in range(1,n-m+1):
-    indexsum=indexsum-l[j-1]
-    tmp=tmp-indexsum+(m)*l[j+m-1]
-    indexsum+=l[j+m-1]
-    print('for',tmp)
-    if tmp>max:
-        max=tmp
-
-print(max)
-
+# n-mは左端ぶんから引いた残りの数 その分だけforを回す
+for i in range(n-m):
+    # 内部変数nxtを定義 左端累計のnowから (累積和rwのnow外右から左を引いた数)＋(右のインデックス数(常にmになる）＊リスト内該当数字) を引く
+    # やってることは想像通りだが累積和の法則を活かした形が違った
+  nxt=now-(rw[i+m]-rw[i])+m*a[i+m]
+    #nwxをnowに置き換えてmax判定 考え方は予想通り
+  now=nxt
+  ans=max(ans,now)
+# print(ans)
