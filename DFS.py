@@ -25,6 +25,51 @@ print(ans)
 
 
 
+
+# ABC277 C 無向閉路ありのDFSで最長経路探索
+from collections import defaultdict
+n=int(input())
+l=defaultdict(set)
+for i in range(n):
+    a,b=map(int, input().split())
+    l[a].add(b)
+    l[b].add(a)
+if 1 not in l.keys():
+    print('1')
+    exit()
+
+maxheight=1
+memo=set()
+
+def dfs(n):
+    global maxheight
+    global memo
+    tmp=max(l[n])
+    maxheight=max(maxheight,tmp)
+    for vv in l[n]:
+        if vv in memo:
+            continue
+        memo.add(vv)
+        dfs(vv)
+
+dfs(1)
+print(maxheight)
+
+# 同上のdequeを使ったwhile作戦
+que = deque()
+que.append(1)
+S = {1}
+while que:
+	v = que.popleft()
+	for i in graph[v]:
+		if not i in S:
+			que.append(i)
+			S.add(i)
+print(max(S))
+
+
+
+
     # for v in range(j-1,-1,-1):
     #     if v in k:
     #         tmp+=1
