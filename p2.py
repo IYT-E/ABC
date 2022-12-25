@@ -20,7 +20,12 @@ for i,v in enumerate(l):
             ans=7
 
     else:
-        if hei[0]<yasumi[0]:
+        if len(yasumi)>0 and len(hei)>0:
+            if hei[0]<yasumi[0]:
+                hei.popleft()
+            else:
+                yasumi.popleft()
+        elif len(yasumi)==0:
             hei.popleft()
         else:
             yasumi.popleft()
