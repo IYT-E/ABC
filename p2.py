@@ -1,43 +1,39 @@
+#A023
 from collections import deque
-
-n=int(input())
+N=int(input())
 l=list(map(int,input().split()))
-hei=deque()
-yasumi=deque()
-cnt=0
+heijitsu=deque()
+holiday=deque()
+count=0
 ans=0
 for i,v in enumerate(l):
     if v==1:
-        hei.append(i)
+        heijitsu.append(i)
     else:
-        yasumi.append(i)
-
+        holiday.append(i)
     if i<6:
         continue
     elif i==6:
-        if len(yasumi)>=2:
-            cnt=7
+        if len(holiday)>=2:
+            count=7
             ans=7
-
     else:
-        if len(yasumi)>0 and len(hei)>0:
-            if hei[0]<yasumi[0]:
-                hei.popleft()
+        if len(holiday)>0 and len(heijitsu)>0:
+            if heijitsu[0]<holiday[0]:
+                heijitsu.popleft()
             else:
-                yasumi.popleft()
-        elif len(yasumi)==0:
-            hei.popleft()
+                holiday.popleft()
+        elif len(holiday)==0:
+            heijitsu.popleft()
         else:
-            yasumi.popleft()
-        
-        if len(yasumi)>=2:
-            if cnt>=7:
-                cnt+=1
-                ans=max(ans,cnt)
+            holiday.popleft()
+        if len(holiday)>=2:
+            if count>=7:
+                count+=1
+                ans=max(ans,count)
             else:
-                cnt=7
-                ans=max(ans,cnt)
+                count=7
+                ans=max(ans,count)
         else:
-            cnt=0
-
+            count=0
 print(ans)
